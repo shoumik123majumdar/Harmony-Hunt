@@ -1,0 +1,23 @@
+.spotify-input {
+    background-color: #191414; /* Spotify black for background */
+    color: #FFFFFF; /* White text color for contrast */
+    border: 2px solid #1DB954; /* Spotify green border */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 16px; /* Comfortable font size */
+    padding: 10px 15px; /* Adequate padding inside the input box */
+    outline: none; /* Removes the default focus outline */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition for focus state */
+  }
+  
+  .spotify-input::placeholder {
+    color: #A0A0A0; /* Light grey placeholder text */
+  }
+  
+  .spotify-input:focus {
+    border-color: #1DD05D; /* Slightly lighter green for focus state */
+    box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.25); /* Subtle glow effect on focus */
+  }
+  
+  .spotify-input:hover {
+    border-color: #1DF069; /* Even lighter green on hover */
+  }

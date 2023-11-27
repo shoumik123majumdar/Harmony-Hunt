@@ -1,9 +1,9 @@
-import React, {useRef, useState, useContext} from 'react';
+import React, {useRef, useState} from 'react';
 import '../Login/harmony-hunt-logo_480.png';
-//import '../App.css';
+import '../App.css';
 import './style.css'
 import AlbumImage from './AlbumImage'
-import Hints from './Hint';
+import GuessInput from "./GuessInput"
 import {useLocation} from 'react-router-dom';
 
 
@@ -44,20 +44,11 @@ function Game() {
   
   return (
     <>
-    <AlbumImage image_url = {song_info.image_url} guessCount = {guessCount} />
-    <div id="all-boxes">
+    <div className="container">
+      <AlbumImage image_url = {song_info.image_url} guessCount = {guessCount} />
       <div id="guess-box"  className="hint">
-        <input ref={guessRef}type="text" id="guess-input" placeholder="Enter Guess..."></input>
-        <button id="guess-button" onClick={handleGuess}></button>
+        <GuessInput guessRef = {guessRef} handleGuess = {handleGuess}/>
       </div>
-    <Hints />
-    <div>
-          <h1>{song_info.title}</h1>
-          <p>Album: {song_info.album_name}</p>
-          <p>Artist: {song_info.artist}</p>
-          <p>Year: {song_info.year}</p>
-          <p>Snippet: {song_info.snippet}</p>
-        </div>
     </div>
 
     <p>{}</p>
