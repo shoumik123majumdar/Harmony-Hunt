@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+
 
 export default function Hints() {
     return(
@@ -18,7 +18,7 @@ export default function Hints() {
                 <button id="snippet-button">
                     <div id="play-button"></div>
                 </button>
-                <p id="snippet-text" class="hint-text">Play Snippet</p>
+                <p id="snippet-text" className="hint-text">Play Snippet</p>
             </div>
             </div>
         </div>
