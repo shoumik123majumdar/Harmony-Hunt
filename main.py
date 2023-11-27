@@ -24,7 +24,7 @@ def get_random_song_info():
     sp = Spotipy(CLIENT_ID, CLIENT_SECRET, SCOPE, cache_path)
     sp.authenticate_user()
 
-    tracks = sp.get_current_user_recently_played(limit=50)
+    tracks = list(set(sp.get_current_user_recently_played(limit=50)))
     song_index = random.randint(0, len(tracks) - 1)
 
     # Randomly chooses one of the 50 most recently played tracks

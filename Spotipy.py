@@ -1,6 +1,5 @@
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
-from ImageBlur import ImageBlur
 import requests
 from io import BytesIO
 from pydub import AudioSegment
@@ -118,10 +117,8 @@ class Spotipy():
         track_info['release_date'] = track['album']['release_date']
         track_info['artist_name'] = track['artists'][0].get('name')
         track_info['album_name'] = track['album']['name']
+        track_info['album_image_url'] = track['album']['images'][0]['url']
 
-        image = track['album']['images'][0]['url']
-        track_info['album_image_url'] = image
-        track_info['album_image_blurred'] = ImageBlur(image).blur_image()
 
 
         track_info['snippet'] = self.shorten_audio_url(track['preview_url'])
