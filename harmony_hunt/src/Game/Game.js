@@ -1,9 +1,9 @@
 import React, {useRef, useState} from 'react';
 import '../Login/harmony-hunt-logo_480.png';
-import '../App.css';
 import './style.css'
 import AlbumImage from './AlbumImage'
 import GuessInput from "./GuessInput"
+import Genre from "./Genre"
 import {useLocation} from 'react-router-dom';
 
 
@@ -22,7 +22,8 @@ function Game() {
     album_name: userGameData.album_name,
     artist: userGameData.artist_name,  // in your userGameData object
     year: userGameData.release_date,    // Same as above
-    snippet: userGameData.snippet
+    snippet: userGameData.snippet,
+    genre: userGameData.genre
   } : {
     title: "Loading...",    //Placeholder values
     image_url: "Loading...",          
@@ -30,12 +31,13 @@ function Game() {
     album_name: "Loading...",  
     artist: "Loading...",    
     year: "Loading...",     
-    snippet: "Loading..."  
+    snippet: "Loading...",  
+    genre : "Loading..."
   };
 
-
+  console.log(song_info.genre)
   
-  function handleGuess(e) {
+  function handleGuess() {
     setGuessCount(prevCount => prevCount+1);
     const guess = guessRef.current.value;
     if (guess.toUpperCase() === song_info.title.toUpperCase()) {
@@ -43,16 +45,15 @@ function Game() {
   }
   
   return (
-    <>
+  
     <div className="container">
       <AlbumImage image_url = {song_info.image_url} guessCount = {guessCount} />
-      <div id="guess-box"  className="hint">
+      <div id="guess-box">
         <GuessInput guessRef = {guessRef} handleGuess = {handleGuess}/>
       </div>
+      <Genre song_genre = {song_info.genre} guessCount = {guessCount}/>
     </div>
-
-    <p>{}</p>
-    </>
+    
     
   );
 }
