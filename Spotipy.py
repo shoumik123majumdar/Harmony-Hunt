@@ -119,7 +119,9 @@ class Spotipy():
         track_info['album_name'] = track['album']['name']
         track_info['album_image_url'] = track['album']['images'][0]['url']
 
-
+        artist_id = track['artists'][0]['id']
+        artist_info = self.sp.artist(artist_id)
+        track_info['genre'] = artist_info['genres']
 
         track_info['snippet'] = self.shorten_audio_url(track['preview_url'])
         return track_info

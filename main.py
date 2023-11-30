@@ -7,9 +7,7 @@ from flask_cors import cross_origin
 
 
 app = Flask(__name__)
-CORS(app, supports_credentials=True, origins=['http://localhost:3000']) #Update when we get an actual domain for the website
-
-
+#CORS(app) #Update when we get an actual domain for the website
 
 @app.route('/get-random-song-info') #Ask what a good naming principle is for
 @cross_origin()
@@ -25,12 +23,15 @@ def get_random_song_info():
     sp.authenticate_user()
 
     tracks = list(set(sp.get_current_user_recently_played(limit=50)))
+    #Handle when user doesn't have enough songs (aka len(tracks) ==0) or if persistence is implemented, tracks have already been used
+    #Prompt them with something like "Listen to more new music"
     song_index = random.randint(0, len(tracks) - 1)
 
     # Randomly chooses one of the 50 most recently played tracks
     chosen_track_id = tracks[song_index]
     track_info = sp.get_track_info(chosen_track_id)
     return jsonify(track_info)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
