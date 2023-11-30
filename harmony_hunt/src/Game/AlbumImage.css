@@ -4,7 +4,7 @@
     filter: blur(60px); /* Adjust the blur value as needed */
   }
   
-  img {
+img {
     transition: filter 0.5s ease; /* Animation effect for the blur */
     width: 500px;
     height:auto;

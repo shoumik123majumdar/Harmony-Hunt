@@ -7,6 +7,7 @@ import Genre from "./Genre"
 import ReleaseDate from "./ReleaseDate"
 import ArtistName from "./ArtistName"
 import AlbumName from "./AlbumName"
+import AudioPlayer from "./AudioPlayer"
 import {useLocation} from 'react-router-dom';
 
 
@@ -56,6 +57,7 @@ function Game() {
       <Genre song_genre = {song_info.genre} guessCount = {guessCount}/>
       <ReleaseDate song_date={song_info.year} guessCount = {guessCount}/>
       <ArtistName song_artist = {song_info.artist} guessCount = {guessCount}/>
+      <AudioPlayer base64Audio={song_info.snippet} guessCount = {guessCount}/>
     </div>
     
     

@@ -1,6 +1,6 @@
 body {
     height: 98vh;
-    background-image: linear-gradient(50deg, #1DB954 15%, #191414 15%);
+    background-color: #191414;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -17,3 +17,43 @@ p {
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #1DB954;
 }
+
+.button {
+    background-color: #1DB954; /* Green background */
+    border: none; /* No border */
+    margin: 4px 2px; /* Some margin */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 50%; /* Rounded shape */
+    width: 80px; /* Fixed width */
+    height: 80px; /* Fixed height */
+    position: relative; /* Set relative positioning for the parent */
+  }
+  
+.button:hover {
+    background-color: #1DF069; /* Slightly darker green on hover */
+    /* Add any desired hover effects */
+  }
+  
+/* Icon */
+.button::after {
+    font-size: 35px; /* Large icon size for play symbol */
+    color: black; /* Icon color */
+    position: absolute;
+    top: calc(50%);
+    left: calc(50% + 2px);
+    transform: translate(-50%, -50%);
+    content: '\25BA'; /* Unicode for right-pointing triangle */
+  }
+  
+.button.clicked::after {
+    content: '\2590\2590'; /* Unicode for the pause icon */
+    font-size: 20px; /* Adjust the font size as needed */
+    line-height: 1; /* Setting line height to 1 to eliminate extra space */
+    color: black; /* Icon color */
+    background: transparent; /* Ensure no background is applied */
+    border: none; /* Ensure no border is applied */
+    position: absolute;
+    top: 50%;
+    left: calc(50% - 4px);
+    transform: translate(-50%, -50%); /* Center the icon */
+  }
