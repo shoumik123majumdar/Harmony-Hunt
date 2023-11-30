@@ -1,4 +1,5 @@
 import React from 'react'
+import './style.css'
 
 function Genre({song_genre,guessCount})
 {
@@ -15,8 +16,8 @@ function Genre({song_genre,guessCount})
     genre_text +=song_genre[song_genre.length-1]
 
     return (
-        <div>
-        {isVisible && <label>{genre_text}</label>}
+        <div >
+        {isVisible && <label className="hint">{genre_text}</label>}
         </div>
     );
 }

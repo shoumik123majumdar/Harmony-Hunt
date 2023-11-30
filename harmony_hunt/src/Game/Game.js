@@ -4,6 +4,9 @@ import './style.css'
 import AlbumImage from './AlbumImage'
 import GuessInput from "./GuessInput"
 import Genre from "./Genre"
+import ReleaseDate from "./ReleaseDate"
+import ArtistName from "./ArtistName"
+import AlbumName from "./AlbumName"
 import {useLocation} from 'react-router-dom';
 
 
@@ -34,8 +37,6 @@ function Game() {
     snippet: "Loading...",  
     genre : "Loading..."
   };
-
-  console.log(song_info.genre)
   
   function handleGuess() {
     setGuessCount(prevCount => prevCount+1);
@@ -47,11 +48,14 @@ function Game() {
   return (
   
     <div className="container">
-      <AlbumImage image_url = {song_info.image_url} guessCount = {guessCount} />
+      <AlbumImage image_url = {song_info.image_url} guessCount = {guessCount} albumName = {song_info.album_name} />
+      <AlbumName song_album = {song_info.album_name} guessCount = {guessCount}/>
       <div id="guess-box">
         <GuessInput guessRef = {guessRef} handleGuess = {handleGuess}/>
       </div>
       <Genre song_genre = {song_info.genre} guessCount = {guessCount}/>
+      <ReleaseDate song_date={song_info.year} guessCount = {guessCount}/>
+      <ArtistName song_artist = {song_info.artist} guessCount = {guessCount}/>
     </div>
     
     
