@@ -6,6 +6,7 @@ from pydub import AudioSegment
 import pandas
 import os
 import base64
+import random
 
 class Spotipy():
     def __init__(self, CLIENT_ID, CLIENT_SECRET,SCOPE,cache_path):
@@ -126,11 +127,23 @@ class Spotipy():
         track_info['snippet'] = self.shorten_audio_url(track['preview_url'])
         return track_info
 
-    def shorten_audio_url(self,audio_url):
+
+    def shorten_audio_url(self, audio_url):
+        # Fetch the audio file
         response = requests.get(audio_url)
         audio_data = BytesIO(response.content)
 
-        shortened_audio = AudioSegment.from_mp3(audio_data)[:1500]
+        # Load the audio file
+        audio = AudioSegment.from_mp3(audio_data)
+
+        # Get a random start point
+        max_start = len(audio) - 1500  # Subtract 1500 milliseconds from total length
+        random_start = random.randint(0, max_start)  # Random start point
+
+        # Extract 1.5 seconds from the random start point
+        shortened_audio = audio[random_start:random_start + 1500]
+
+        # Export the audio snippet
         audio_data = shortened_audio.export(format='mp3')
         base64_audio = base64.b64encode(audio_data.read()).decode("utf-8")
 
