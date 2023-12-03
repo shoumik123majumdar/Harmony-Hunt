@@ -6,7 +6,7 @@ body {
 }
 ​
 p {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'PlaylistFont',sans-serif;
 }
 .container{
     display:flex;
@@ -14,7 +14,8 @@ p {
     align-items: center;
 }
 .hint{
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'PlaylistFont','Franklin Gothic Medium';
+    font-size:60px;
     color: #1DB954;
 }
 

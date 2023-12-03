@@ -1,16 +1,11 @@
 import React from 'react'
-import './style.css'
 
-function ArtistName({song_artist,guessCount})
+
+function ArtistName({song_artist})
 {
-    var isVisible = false;
-    if (guessCount>2){
-        isVisible = true;
-    }
-
     return (
         <div >
-        {isVisible && <label className="hint">{"Artist: "+ song_artist}</label>}
+        <label className="hint">{"Artist: "+ song_artist}</label>
         </div>
     );
 }

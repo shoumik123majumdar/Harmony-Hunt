@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-function AudioPlayer({ base64Audio, guessCount }) {
+function AudioPlayer({ base64Audio}) {
   const [canPlay, setCanPlay] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
 
   function handlePlayClick() {
-    if (canPlay && guessCount > 4) {
+    if (canPlay) {
       setIsPlaying(true); // Change state to indicate playing
       const audio = new Audio(`data:audio/mpeg;base64,${base64Audio}`);
       audio.play();
@@ -19,7 +19,7 @@ function AudioPlayer({ base64Audio, guessCount }) {
 
   return (
     <div>
-      {canPlay && guessCount > 4 && (
+      {canPlay && (
         <button
           className={`button ${isPlaying ? 'clicked' : ''}`}
           onClick={handlePlayClick}
