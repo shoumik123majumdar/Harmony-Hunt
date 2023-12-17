@@ -29,6 +29,7 @@ function Game() {
     artist: userGameData.artist_name,  // in your userGameData object
     year: userGameData.release_date,    // Same as above
     snippet: userGameData.snippet,
+    clip: userGameData.clip,
     genre: userGameData.genre
   } : {
     title: "Loading...",    //Placeholder values
@@ -37,8 +38,11 @@ function Game() {
     artist: "Loading...",    
     year: "Loading...",     
     snippet: "Loading...",  
+    clip: "Loading...",
     genre : "Loading..."
   };
+
+  console.log(song_info)
   
   function handleGuess() {
     setGuessCount(prevCount => {
@@ -46,7 +50,7 @@ function Game() {
       const guess = guessRef.current.value;
   
       
-      if(newCount>3) { //unblur album cover after the users 4th guess
+      if(newCount>4) { //unblur album cover after the users 4th guess
         setIsBlurred(false);
       }
       if (newCount> 5) { //end the game after the user's 6th guess
@@ -83,10 +87,14 @@ function Game() {
         (<ArtistName song_artist={song_info.artist}/>)
       }
       {
-        (gameIsOver || guessCount > 4) && 
+        (guessCount > 3) && 
         (<AudioPlayer base64Audio={song_info.snippet}/>)
       }
       {gameIsOver && <GameOver song_title = {song_info.title} guessCount = {guessCount} guessIsValid = {isCorrectGuess}/>}
+      {gameIsOver && <audio src={song_info.clip} autoPlay></audio>
+}
+
+
     </div>
     
     
