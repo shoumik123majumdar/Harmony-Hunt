@@ -114,7 +114,7 @@ class Spotipy():
         track = self.sp.track(track_id = track_id)
         track_info = {}
 
-        track_info['track_name'] = track["name"]
+        track_info['track_name'] = self.clean_track_name(track["name"])
         track_info['release_date'] = track['album']['release_date']
         track_info['artist_name'] = track['artists'][0].get('name')
         track_info['album_name'] = track['album']['name']
@@ -155,6 +155,6 @@ class Spotipy():
         for i,char in enumerate(track_name):
             if char in ["(", "-"]:
                 return track_name[:i].strip()
-
+        return track_name
 
 
