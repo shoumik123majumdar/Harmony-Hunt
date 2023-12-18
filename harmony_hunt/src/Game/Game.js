@@ -9,6 +9,8 @@ import ArtistName from "./ArtistName"
 import GameOver from './GameOver.js'
 import AudioPlayer from "./AudioPlayer"
 import {useLocation} from 'react-router-dom';
+import stringSimilarity from 'string-similarity';
+
 
 
 function Game() { 
@@ -19,6 +21,7 @@ function Game() {
   const [isCorrectGuess,setCorrectGuess] = useState(false);
   const [gameIsOver,setGameIsOver] = useState(false);
   const [isBlurred, setIsBlurred] = useState(true);
+  const [isDisabled,setIsDisabled] = useState(false);
 
   const guessRef = useRef();
 
@@ -48,7 +51,8 @@ function Game() {
     setGuessCount(prevCount => {
       const newCount = prevCount + 1;
       const guess = guessRef.current.value;
-  
+      const similarity = stringSimilarity.compareTwoStrings(guess.toUpperCase(), song_info.title.toUpperCase());
+
       
       if(newCount>4) { //unblur album cover after the users 4th guess
         setIsBlurred(false);
@@ -56,11 +60,14 @@ function Game() {
       if (newCount> 5) { //end the game after the user's 6th guess
         setIsBlurred(false);
         setGameIsOver(true);
+        setIsDisabled(true); //User no longer able to input guesses
       }
-      if (guess.toUpperCase() === song_info.title.toUpperCase()) { // If the user guesses correctly..
+
+      if (similarity>=0.8) { // If the user guesses correctly..
         setCorrectGuess(true); //set there guess as correct
         setIsBlurred(false); // Unblur the album cover
         setGameIsOver(true); //End the game
+        setIsDisabled(true);
         
       } 
       return newCount;
@@ -72,7 +79,7 @@ function Game() {
     <div className="container">
       <AlbumImage image_url = {song_info.image_url} isBlurred = {isBlurred} />
       <div id="guess-box">
-        <GuessInput guessRef = {guessRef} handleGuess = {handleGuess}/>
+        <GuessInput guessRef = {guessRef} handleGuess = {handleGuess} isDisabled = {isDisabled}/>
       </div>
       {
         (gameIsOver || guessCount > 0) && 
@@ -87,7 +94,7 @@ function Game() {
         (<ArtistName song_artist={song_info.artist}/>)
       }
       {
-        (guessCount > 3) && 
+        (guessCount > 3 && !gameIsOver) && 
         (<AudioPlayer base64Audio={song_info.snippet}/>)
       }
       {gameIsOver && <GameOver song_title = {song_info.title} guessCount = {guessCount} guessIsValid = {isCorrectGuess}/>}
