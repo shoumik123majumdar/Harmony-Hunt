@@ -151,5 +151,10 @@ class Spotipy():
 
         return base64_audio
 
+    def clean_track_name(self,track_name):
+        for i,char in enumerate(track_name):
+            if char in ["(", "-"]:
+                return track_name[:i].strip()
+
 
 
