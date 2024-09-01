@@ -9,17 +9,27 @@ from flask_cors import cross_origin
 app = Flask(__name__)
 #CORS(app) #Update when we get an actual domain for the website
 
+
+@app.route('/logout') #Ask what a good naming principle is for
+@cross_origin()
+def logout():
+    if os.path.exists(".cache"):
+        os.remove(".cache")
+
+
+
 @app.route('/get-random-song-info') #Ask what a good naming principle is for
 @cross_origin()
 def get_random_song_info():
-    cache_path = os.path.expanduser("~/.cache/my_spotify_app/")  # makes cache
-    os.makedirs(cache_path, exist_ok=True)
-
+    if os.path.exists(".cache"):
+        os.remove(".cache")
+    if not os.path.exists(".cache"):
+        print("HAPPENED")
     CLIENT_ID = os.environ.get("CLIENT_ID")
     CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
     SCOPE = "user-read-playback-state playlist-modify-public user-top-read user-read-recently-played"
 
-    sp = Spotipy(CLIENT_ID, CLIENT_SECRET, SCOPE, cache_path)
+    sp = Spotipy(CLIENT_ID, CLIENT_SECRET, SCOPE)
     sp.authenticate_user()
 
     tracks = list(set(sp.get_current_user_recently_played(limit=50)))

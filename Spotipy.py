@@ -4,18 +4,16 @@ import requests
 from io import BytesIO
 from pydub import AudioSegment
 import pandas
-import os
 import base64
 import random
 
 class Spotipy():
-    def __init__(self, CLIENT_ID, CLIENT_SECRET,SCOPE,cache_path):
+    def __init__(self, CLIENT_ID, CLIENT_SECRET,SCOPE):
         self.CLIENT_ID = CLIENT_ID
         self.CLIENT_SECRET = CLIENT_SECRET
         self.CLIENT_SCOPE = SCOPE
         self.sp = None
         self.USER_ID = None
-        self.cache_path = cache_path
 
 
     def authenticate_user(self):
@@ -24,7 +22,7 @@ class Spotipy():
             client_secret= self.CLIENT_SECRET,
             redirect_uri="http://localhost:3000/callback",
             scope=  self.CLIENT_SCOPE,
-            cache_path= os.path.join(self.cache_path,".cache")
+            show_dialog=False
         ))
         self.USER_ID = self.sp.current_user()['id']
 
@@ -103,6 +101,7 @@ class Spotipy():
     def get_current_user_top_artists(self,artist_limit=5):
         return self.__get_top("artist",artist_limit)
 
+    #DONNY REMAKE THIS ONE
     def get_current_user_recently_played(self,limit=50):
         response = self.sp.current_user_recently_played(limit=limit)['items']
         tracks = []
@@ -110,6 +109,7 @@ class Spotipy():
             tracks.append( item['track']['id'])
         return tracks
 
+    #DONNY REMAKE THIS ONE
     def get_track_info(self,track_id):
         track = self.sp.track(track_id = track_id)
         track_info = {}
@@ -156,5 +156,4 @@ class Spotipy():
             if char in ["(", "-"]:
                 return track_name[:i].strip()
         return track_name
-
 
