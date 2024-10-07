@@ -34,6 +34,7 @@ def generate_random_song():
     # Randomly chooses one of the 50 most recently played tracks
     chosen_track_id = tracks[song_index]
     song_info = sp.get_track_info(chosen_track_id)
+    song = Song(song_info)
     return jsonify(song_info)
 
 
