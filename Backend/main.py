@@ -4,30 +4,24 @@ from Spotipy import Spotipy
 from flask import Flask, jsonify
 from flask_cors import CORS
 from flask_cors import cross_origin
+from Song import Song
 
 
 app = Flask(__name__)
 #CORS(app) #Update when we get an actual domain for the website
 
 
-@app.route('/logout') #Ask what a good naming principle is for
+def clear_cache():
+    if os.path.exists("../.cache"):
+        os.remove("../.cache")
+
+@app.route('/generate-random-song') #Ask what a good naming principle is for
 @cross_origin()
-def logout():
-    if os.path.exists(".cache"):
-        os.remove(".cache")
-
-
-
-@app.route('/get-random-song-info') #Ask what a good naming principle is for
-@cross_origin()
-def get_random_song_info():
-    if os.path.exists(".cache"):
-        os.remove(".cache")
-    if not os.path.exists(".cache"):
-        print("HAPPENED")
+def generate_random_song():
+    clear_cache()
     CLIENT_ID = os.environ.get("CLIENT_ID")
     CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
-    SCOPE = "user-read-playback-state playlist-modify-public user-top-read user-read-recently-played"
+    SCOPE = "user-read-playback-state user-top-read user-read-recently-played"
 
     sp = Spotipy(CLIENT_ID, CLIENT_SECRET, SCOPE)
     sp.authenticate_user()
@@ -39,8 +33,8 @@ def get_random_song_info():
 
     # Randomly chooses one of the 50 most recently played tracks
     chosen_track_id = tracks[song_index]
-    track_info = sp.get_track_info(chosen_track_id)
-    return jsonify(track_info)
+    song_info = sp.get_track_info(chosen_track_id)
+    return jsonify(song_info)
 
 
 if __name__ == '__main__':

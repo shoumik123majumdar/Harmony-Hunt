@@ -22,7 +22,7 @@ class Spotipy():
             client_secret= self.CLIENT_SECRET,
             redirect_uri="http://localhost:3000/callback",
             scope=  self.CLIENT_SCOPE,
-            show_dialog=False
+            show_dialog=True
         ))
         self.USER_ID = self.sp.current_user()['id']
 
