@@ -34,7 +34,7 @@ def generate_random_song():
     # Randomly chooses one of the 50 most recently played tracks
     chosen_track_id = tracks[song_index]
     song_info = sp.get_track_info(chosen_track_id)
-    song = Song(song_info)
+    song = Song(song_info) #TODO: Preserve state of the song and figure out how to transition from this method to the start of the game
     return jsonify(song_info)
 
 

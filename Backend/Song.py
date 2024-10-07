@@ -5,7 +5,8 @@ import base64
 import random
 
 
-class Song():
+class Song:
+
     def __init__(self,track_info):
         self.track_name =  track_info['track_name']
         self.release_date = track_info['release_date']
@@ -16,27 +17,87 @@ class Song():
         self.clip = track_info['clip']
         self.snippet = self.shorten_audio_url(self.clip)
 
-
+    """
+    Gets the song name
+    Inputs: N/A
+    Outputs:
+        - self.track_name: song name
+    """
     def get_track_name(self):
         return self.track_name
+
+    """
+    Gets the release date of the song
+    Inputs: N/A
+    Outputs:
+        - self.release_date: release date of the song
+    """
     def get_release_date(self):
         return self.release_date
+
+    """
+    Gets the artist's name
+    Inputs: N/A
+    Outputs:
+        - self.artist_name: artist's name
+    """
     def get_artist_name(self):
         return self.artist_name
+
+    """
+    Gets the album name
+    Inputs: N/A
+    Outputs:
+        - self.album_name: name of the album 
+    """
     def album_name(self):
         return self.album_name()
 
+    """
+    Gets the URL of the album image
+    Inputs: N/A
+    Outputs:
+        - self.album_image_url: URL of the album image
+    """
     def get_album_image(self):
         return self.album_image_url
 
+    """
+    Gets the genre of the song
+    Inputs: N/A
+    Outputs:
+        - self.genre: song's genre
+    """
     def get_genre(self):
         return self.genre
+
+    """
+    Gets the full audio clip of the song
+    Inputs: N/A
+    Outputs:
+        - self.clip: full audio clip of the song
+    """
     def get_clip(self):
         return self.clip
+
+    """
+    Gets the shortened snippet of the audio
+    Inputs: N/A
+    Outputs:
+        - self.snippet: shortened 1.5 second audio snippet
+    """
     def get_snippet(self):
         return self.snippet()
 
-    def shorten_audio_url(self, audio_url):
+    """
+    HELPER FUNCTION
+    Shortens the provided audio URL by extracting a random 1.5-second snippet
+    Inputs:
+        - audio_url: URL of the full audio clip
+    Outputs:
+        - base64_audio: base64-encoded 1.5-second audio snippet
+    """
+    def _shorten_audio_url(self, audio_url):
         # Fetch the audio file
         response = requests.get(audio_url)
         audio_data = BytesIO(response.content)

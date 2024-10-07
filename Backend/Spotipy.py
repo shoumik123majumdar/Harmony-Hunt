@@ -7,14 +7,15 @@ import pandas
 import base64
 import random
 
-class Spotipy():
+
+class Spotipy:
+
     def __init__(self, CLIENT_ID, CLIENT_SECRET,SCOPE):
         self.CLIENT_ID = CLIENT_ID
         self.CLIENT_SECRET = CLIENT_SECRET
         self.CLIENT_SCOPE = SCOPE
         self.sp = None
         self.USER_ID = None
-
 
     def authenticate_user(self):
         self.sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
