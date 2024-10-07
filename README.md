@@ -6,8 +6,6 @@ But what sets Spotle apart? Personalization! Unlike generic music games, Spotle 
 
 And for those who don’t want to log in, Spotle lets you jump into popular public playlists like RapCaviar or Viva Latino, so there's always something new to guess.
 
-Tired of being stumped on Heardle day after day? Switch to Spotle! With more clues and personalized game modes, you’ll be back in control. Whether you win or lose, you’ll still get to enjoy snippets of the music you love. So, why wait? Switch to Spotle and get the musical word-guessing experience you've been waiting for!
-
 ## How It Works
 You have **6 guesses** to guess the name of a song. After each incorrect guess, new clues are revealed to help you narrow down your answer:
 
