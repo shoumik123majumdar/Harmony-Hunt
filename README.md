@@ -5,8 +5,8 @@ Spotle is a fun and interactive web app that blends the classic word-guessing ga
 ## How It Works
 You have **6 guesses** to guess the name of a song. After each incorrect guess, new clues are revealed to help you narrow down your answer:
 
-1. **1st Guess**: Reveals the **song's genre**.
-2. **2nd Guess**: Reveals the **release date**.
+1. **1st Guess**: Reveals the song's **genre**.
+2. **2nd Guess**: Reveals the song's**release date**.
 3. **3rd Guess**: Reveals the **artist's name**.
 4. **4th Guess**: Reveals a **1.5-second snippet** of the song.
 5. **5th Guess**: Reveals the **album cover**.
